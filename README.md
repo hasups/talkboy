@@ -1,4 +1,4 @@
-# chatboy
+# talkboy
 gpt-3.5-turbo [python-telegram-bot](https://docs.python-telegram-bot.org/en/stable/) on [Vercel](https://vercel.com/dashboard)
 
 # environment variables
@@ -6,7 +6,7 @@ gpt-3.5-turbo [python-telegram-bot](https://docs.python-telegram-bot.org/en/stab
 - TELEGRAM_BOT_TOKEN
 
 # services
-- /ai
+- text or /ai
   - [gpt-3.5-turbo](https://platform.openai.com/docs/models/gpt-3-5)
 - /image
   - [DALL.E](https://platform.openai.com/docs/models/dall-e)
