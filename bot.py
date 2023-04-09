@@ -61,7 +61,6 @@ def ai_chat(bot, update, args):
         max_tokens=256,
         temperature=0.7
     )
-    #update.message.reply_text(out['choices'][0]['message']['content'].strip())
     bot.send_message(chat_id=update.message.chat_id, text=out['choices'][0]['message']['content'].strip())
 
 
@@ -88,7 +87,7 @@ def draw(bot, update, args):
     K = update.message.reply_text("Please Wait 10-15 Second")
 
     payload = {"prompt": msg}
-'''
+
     r = requests.post(url=f'{sd_url}/sdapi/v1/txt2img', json=payload).json()
 
     chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -104,7 +103,8 @@ def draw(bot, update, args):
     gen9 = random.choice(chars)
     gen10 = random.choice(chars1)
     word = f"{update.message.from_user.id}-MOE{gen1}{gen2}{gen3}{gen4}{gen5}{gen6}{gen7}{gen8}{gen9}{gen10}"
-
+    update.message.reply_text(word)
+'''
     for i in r['images']:
         image = Image.open(io.BytesIO(base64.b64decode(i.split(",", 1)[0])))
 
