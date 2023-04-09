@@ -16,7 +16,8 @@ from PIL import Image, PngImagePlugin
 import base64
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
-telegram_bot_token = os.getenv("TELEGRAM_BOT_TOKEN")
+#telegram_bot_token = os.getenv("TELEGRAM_BOT_TOKEN")
+telegram_bot_token = str(os.getenv("TELEGRAM_BOT_TOKEN"))
 sd_url = os.getenv("STABLE_DIFFUSION_URL")
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
