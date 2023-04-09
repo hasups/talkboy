@@ -55,6 +55,9 @@ def bot_help(bot, update):
 
 def ai_chat(bot, update, args):
     prompt_in = ' '.join(args)
+    bot.send_message(chat_id=update.message.chat_id, text=prompt_in)
+    update.message.reply_text(prompt_in)
+    '''
     out = openai.ChatCompletion.create(
         model ="gpt-3.5-turbo",
         messages=[{"role": "user", "content": prompt_in}],
@@ -62,8 +65,7 @@ def ai_chat(bot, update, args):
         temperature=0.7
     )
     update.message.reply_text(out['choices'][0]['message']['content'].strip())
-    #bot.send_message(chat_id=update.message.chat_id, text=prompt_in)
-    #update.message.reply_text(prompt_in)
+    '''
 
 
 def ai_image(bot, update, args):
@@ -80,8 +82,6 @@ def ai_image(bot, update, args):
 
 
 def draw(bot, update, args):
-    update.message.reply_text(sd_url)
-'''
     msgs = update.message.text.split(' ', 1)
     if len(msgs) == 1:
         update.message.reply_text("Format : /draw < text to anime image >")
@@ -91,7 +91,7 @@ def draw(bot, update, args):
     K = update.message.reply_text("Please Wait 10-15 Second")
 
     payload = {"prompt": msg}
-
+'''
     r = requests.post(url=f'{sd_url}/sdapi/v1/txt2img', json=payload).json()
 
     chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
