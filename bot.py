@@ -149,7 +149,7 @@ def fact(bot, update):
 dispatcher = Dispatcher(bot, None)
 dispatcher.add_handler(MessageHandler(Filters.text, bot_chat))
 dispatcher.add_handler(CommandHandler('help', bot_help))
-dispatcher.add_handler(CommandHandler('ai', ai_chat, pass_args=True))
+#dispatcher.add_handler(CommandHandler('ai', ai_chat, pass_args=True))
 dispatcher.add_handler(CommandHandler('image', ai_image, pass_args=True))
 #dispatcher.add_handler(CommandHandler('draw', draw, pass_args=True))
 dispatcher.add_handler(CommandHandler('tr', bot_trans, pass_args=True))
