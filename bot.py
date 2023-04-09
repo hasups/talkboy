@@ -55,17 +55,14 @@ def bot_help(bot, update):
 
 def ai_chat(bot, update, args):
     prompt_in = ' '.join(args)
-    bot.send_message(chat_id=update.message.chat_id, text=prompt_in)
-    update.message.reply_text(prompt_in)
-    '''
     out = openai.ChatCompletion.create(
         model ="gpt-3.5-turbo",
         messages=[{"role": "user", "content": prompt_in}],
         max_tokens=256,
         temperature=0.7
     )
-    update.message.reply_text(out['choices'][0]['message']['content'].strip())
-    '''
+    #update.message.reply_text(out['choices'][0]['message']['content'].strip())
+    bot.send_message(chat_id=update.message.chat_id, text=out['choices'][0]['message']['content'].strip())
 
 
 def ai_image(bot, update, args):
