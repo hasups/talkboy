@@ -13,4 +13,4 @@ urllib3
 werkzeug
 openai==0.27.0
 libretranslatepy
-pillow
+Pillow
