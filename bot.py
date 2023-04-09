@@ -78,7 +78,7 @@ def ai_image(bot, update, args):
     json_object = json.loads(str(out))
     bot.send_photo(chat_id=update.message.chat_id, photo=json_object['data'][0]['url'], caption=message)
 
-
+'''
 def draw(bot, update, args):
     msgs = update.message.text.split(' ', 1)
     if len(msgs) == 1:
@@ -124,7 +124,7 @@ def draw(bot, update, args):
         )
         os.remove(f"{word}.png")
         K.delete()
-
+'''
 
 def bot_trans(bot, update, args):
     if len(args)==0:
