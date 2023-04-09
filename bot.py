@@ -61,7 +61,9 @@ def ai_chat(bot, update, args):
         max_tokens=256,
         temperature=0.7
     )
-    bot.send_message(chat_id=update.message.chat_id, text=out['choices'][0]['message']['content'].strip())
+    bot.send_message(chat_id=update.message.chat_id, text=prompt_in+"***")
+    update.message.reply_text(out['choices'][0]['message']['content'].strip())
+
 
 
 def ai_image(bot, update, args):
