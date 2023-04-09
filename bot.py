@@ -11,7 +11,7 @@ import requests
 from libretranslatepy import LibreTranslateAPI
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
-telegram_bot_token = os.getenv("TELEGRAM_BOT_TOKEN")
+telegram_bot_token = str(os.getenv("TELEGRAM_BOT_TOKEN"))
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
