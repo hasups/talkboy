@@ -92,8 +92,10 @@ def draw(bot, update, args):
     file = open("/tmp/test_text1.txt", "w") 
     file.write(prompt_in)
     file.close()
-    file = open("/tmp/test_text1.txt", "r") 
+    file = open("/tmp/test_text1.txt", "r")
     update.message.reply_text(f'Done: {file.read()}')
+    file.close()
+    os.remove("/tmp/test_text1.txt")
 '''
     for i in r['images']:
         image = Image.open(io.BytesIO(base64.b64decode(i.split(",",1)[0])))
