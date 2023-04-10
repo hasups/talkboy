@@ -84,40 +84,22 @@ def draw(bot, update, args):
         return
     msg = msgs[1]
 
-    K = update.message.reply_text("Please Wait 10-15 Second")
+    update.message.reply_text("Please Wait 10-15 Second")
 
     payload = {
         "prompt": msg,
         "steps": 20,
         "save_images": True
     }
-'''
+
     r = requests.post(url=f'{sd_url}/sdapi/v1/txt2img', json=payload).json()
 
-    chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    chars1 = "1234564890"
-    gen1 = random.choice(chars)
-    gen2 = random.choice(chars)
-    gen3 = random.choice(chars1)
-    gen4 = random.choice(chars)
-    gen5 = random.choice(chars)
-    gen6 = random.choice(chars)
-    gen7 = random.choice(chars1)
-    gen8 = random.choice(chars)
-    gen9 = random.choice(chars)
-    gen10 = random.choice(chars1)
-    word = f"{update.message.from_user.id}-MOE{gen1}{gen2}{gen3}{gen4}{gen5}{gen6}{gen7}{gen8}{gen9}{gen10}"
+    word = f"{update.message.from_user.id}"
 
     for i in r['images']:
         image = Image.open(io.BytesIO(base64.b64decode(i.split(",", 1)[0])))
 
-    png_payload = {"image": "data:image/png;base64," + i}
-    response2 = requests.post(url=f'{sd_url}/sdapi/v1/png-info',
-                                json=png_payload)
-
-    pnginfo = PngImagePlugin.PngInfo()
-    pnginfo.add_text("parameters", response2.json().get("info"))
-    image.save(f'{word}.png', pnginfo=pnginfo)
+    image.save(f'{word}.png')
 
     update.message.reply_photo(
         photo=f"{word}.png",
@@ -125,8 +107,7 @@ def draw(bot, update, args):
         f"Prompt - **{msg}**\n **[{update.message.from_user.first_name}-Kun](tg://user?id={update.message.from_user.id})**"
     )
     os.remove(f"{word}.png")
-    K.delete()
-'''
+
 
 def bot_trans(bot, update, args):
     if len(args)==0:
