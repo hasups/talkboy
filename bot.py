@@ -91,7 +91,7 @@ def draw(bot, update, args):
         "steps": 20,
         "save_images": True
     }
-
+'''
     r = requests.post(url=f'{sd_url}/sdapi/v1/txt2img', json=payload).json()
 
     word = f"{update.message.from_user.id}"
@@ -107,7 +107,7 @@ def draw(bot, update, args):
         f"Prompt - **{msg}**\n **[{update.message.from_user.first_name}-Kun](tg://user?id={update.message.from_user.id})**"
     )
     os.remove(f"{word}.png")
-
+'''
 
 def bot_trans(bot, update, args):
     if len(args)==0:
