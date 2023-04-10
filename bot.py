@@ -90,8 +90,8 @@ def draw(bot, update, args):
         "prompt": msg,
         "steps": 5
     }
-
-    r = requests.post(url=f'{sd_url}/sdapi/v1/txt2img', json=payload).json()
+    
+    #r = requests.post(url=f'{sd_url}/sdapi/v1/txt2img', json=payload).json()
 
     chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     chars1 = "1234564890"
@@ -106,7 +106,7 @@ def draw(bot, update, args):
     gen9 = random.choice(chars)
     gen10 = random.choice(chars1)
     word = f"{update.message.from_user.id}-MOE{gen1}{gen2}{gen3}{gen4}{gen5}{gen6}{gen7}{gen8}{gen9}{gen10}"
-
+'''
     for i in r['images']:
         image = Image.open(io.BytesIO(base64.b64decode(i.split(",", 1)[0])))
 
@@ -124,6 +124,7 @@ def draw(bot, update, args):
             f"Prompt - **{msg}**\n **[{update.message.from_user.first_name}-Kun](tg://user?id={update.message.from_user.id})**"
         )
         os.remove(f"{word}.png")
+'''        
         K.delete()
 
 
