@@ -91,11 +91,12 @@ def draw(bot, update, args):
         image = Image.open(io.BytesIO(base64.b64decode(i.split(",",1)[0])))
 
     tmp = f"{update.message.from_user.id}.png"
+    update.message.reply_text(f'Done: {tmp}')
+'''
     image.save(tmp)
-    update.message.reply_text(f'Done : {tmp}')
     bot.send_photo(chat_id=update.message.chat_id, photo=tmp, caption=prompt_in)
     os.remove(tmp)
-
+'''
 
 def bot_trans(bot, update, args):
     if len(args)==0:
