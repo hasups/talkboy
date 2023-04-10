@@ -92,7 +92,7 @@ def draw(bot, update, args):
         "save_images": True
     }
     
-    r = requests.post(url=f'{sd_url}/sdapi/v1/txt2img', json=payload).json()
+    #r = requests.post(url=f'{sd_url}/sdapi/v1/txt2img', json=payload).json()
 
     chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     chars1 = "1234564890"
