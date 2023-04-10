@@ -98,8 +98,9 @@ def draw(bot, update, args):
     bot.send_photo(chat_id=update.message.chat_id, photo=tmp, caption=prompt_in)
     os.remove(tmp)
 '''
-    update.message.reply_text(f'Done : {update.message.from_user.id}')
+    update.message.reply_text(f'Done : {update.message.chat_id}')
 
+    
 def bot_trans(bot, update, args):
     if len(args)==0:
         bot.send_message(chat_id=update.message.chat_id, text="/tr ko|en|vi|jp|zh|... text...")
