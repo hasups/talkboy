@@ -87,16 +87,15 @@ def draw(bot, update, args):
         "save_images": True
     }
     r = requests.post(url=f'{sd_url}/sdapi/v1/txt2img', json=payload).json()
-    #for i in r['images']:
-        #image = Image.open(io.BytesIO(base64.b64decode(i.split(",",1)[0])))
+    for i in r['images']:
+        image = Image.open(io.BytesIO(base64.b64decode(i.split(",",1)[0])))
+    update.message.reply_text(f'Done : {update.message.from_user.id}')
 
-    tmp = f"{update.message.from_user.id}.png"
-    update.message.reply_text(f'Done: {tmp}')
-'''
+    tmp = f"/tmp/.{update.message.from_user.id}.png"
     image.save(tmp)
     bot.send_photo(chat_id=update.message.chat_id, photo=tmp, caption=prompt_in)
     os.remove(tmp)
-'''
+
 
 def bot_trans(bot, update, args):
     if len(args)==0:
