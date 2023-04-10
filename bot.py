@@ -10,11 +10,6 @@ import json
 import requests
 from libretranslatepy import LibreTranslateAPI
 
-import io
-import random
-from PIL import Image, PngImagePlugin
-import base64
-
 openai.api_key = os.getenv("OPENAI_API_KEY")
 telegram_bot_token = os.getenv("TELEGRAM_BOT_TOKEN")
 sd_url = os.getenv("STABLE_DIFFUSION_URL")
@@ -77,37 +72,6 @@ def ai_image(bot, update, args):
     bot.send_photo(chat_id=update.message.chat_id, photo=json_object['data'][0]['url'], caption=message)
 
 
-def draw(bot, update, args):
-    prompt_in = ' '.join(args)
-    update.message.reply_text("Please Wait 10-15 Second")
-
-    payload = {
-        "prompt": prompt_in,
-        "steps": 50,
-        "save_images": True
-    }
-    #r = requests.post(url=f'{sd_url}/sdapi/v1/txt2img', json=payload).json()
-
-    '''
-    file = open("/tmp/test_text1.txt", "w") 
-    file.write(prompt_in)
-    file.close()
-    file = open("/tmp/test_text1.txt", "r")
-    update.message.reply_text(f'Done: {file.read()}')
-    bot.send_document(chat_id=update.message.chat_id, document=open("/tmp/test_text1.txt", "rb"))
-    file.close()
-    os.remove("/tmp/test_text1.txt")
-    '''
-'''
-    for i in r['images']:
-        image = Image.open(io.BytesIO(base64.b64decode(i.split(",",1)[0])))
-
-    tmp = "/tmp/.result.png"
-    image.save(tmp)
-    bot.send_photo(chat_id=update.message.chat_id, photo=open(tmp, "rb"), caption=prompt_in)
-    os.remove(tmp)
-'''
-
 def bot_trans(bot, update, args):
     if len(args)==0:
         bot.send_message(chat_id=update.message.chat_id, text="/tr ko|en|vi|jp|zh|... text...")
@@ -132,7 +96,6 @@ dispatcher.add_handler(MessageHandler(Filters.text, bot_chat))
 dispatcher.add_handler(CommandHandler('help', bot_help))
 dispatcher.add_handler(CommandHandler('ai', ai_chat, pass_args=True))
 dispatcher.add_handler(CommandHandler('image', ai_image, pass_args=True))
-dispatcher.add_handler(CommandHandler('draw', draw, pass_args=True))
 dispatcher.add_handler(CommandHandler('tr', bot_trans, pass_args=True))
 dispatcher.add_handler(CommandHandler('fc', fortune))
 dispatcher.add_handler(CommandHandler('fact', fact))
