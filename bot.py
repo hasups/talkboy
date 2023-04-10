@@ -89,12 +89,10 @@ def draw(bot, update, args):
     payload = {
         "prompt": msg,
         "steps": 20,
-        "batch_size": 1,
-        "n_iter": 1,
         "save_images": True
     }
 
-    #r = requests.post(url=f'{sd_url}/sdapi/v1/txt2img', json=payload).json()
+    r = requests.post(url=f'{sd_url}/sdapi/v1/txt2img', json=payload).json()
 
     chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     chars1 = "1234564890"
@@ -109,26 +107,25 @@ def draw(bot, update, args):
     gen9 = random.choice(chars)
     gen10 = random.choice(chars1)
     word = f"{update.message.from_user.id}-MOE{gen1}{gen2}{gen3}{gen4}{gen5}{gen6}{gen7}{gen8}{gen9}{gen10}"
-'''
+
     for i in r['images']:
         image = Image.open(io.BytesIO(base64.b64decode(i.split(",", 1)[0])))
 
-        png_payload = {"image": "data:image/png;base64," + i}
-        response2 = requests.post(url=f'{sd_url}/sdapi/v1/png-info',
-                                  json=png_payload)
+    png_payload = {"image": "data:image/png;base64," + i}
+    response2 = requests.post(url=f'{sd_url}/sdapi/v1/png-info',
+                                json=png_payload)
 
-        pnginfo = PngImagePlugin.PngInfo()
-        pnginfo.add_text("parameters", response2.json().get("info"))
-        image.save(f'{word}.png', pnginfo=pnginfo)
+    pnginfo = PngImagePlugin.PngInfo()
+    pnginfo.add_text("parameters", response2.json().get("info"))
+    image.save(f'{word}.png', pnginfo=pnginfo)
 
-        update.message.reply_photo(
-            photo=f"{word}.png",
-            caption=
-            f"Prompt - **{msg}**\n **[{update.message.from_user.first_name}-Kun](tg://user?id={update.message.from_user.id})**"
-        )
-        os.remove(f"{word}.png")
-        K.delete()
-'''
+    update.message.reply_photo(
+        photo=f"{word}.png",
+        caption=
+        f"Prompt - **{msg}**\n **[{update.message.from_user.first_name}-Kun](tg://user?id={update.message.from_user.id})**"
+    )
+    os.remove(f"{word}.png")
+    K.delete()
 
 
 def bot_trans(bot, update, args):
