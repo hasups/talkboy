@@ -88,11 +88,12 @@ def draw(bot, update, args):
 
     payload = {
         "prompt": msg,
-        "steps": 5,
-        "save_images": True
+        "steps": 20,
+        "batch_size": 1,
+        "n_iter": 1
     }
-    
-    #r = requests.post(url=f'{sd_url}/sdapi/v1/txt2img', json=payload).json()
+
+    r = requests.post(url=f'{sd_url}/sdapi/v1/txt2img', json=payload).json()
 
     chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     chars1 = "1234564890"
