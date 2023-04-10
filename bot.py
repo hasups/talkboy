@@ -89,9 +89,8 @@ def draw(bot, update, args):
     #r = requests.post(url=f'{sd_url}/sdapi/v1/txt2img', json=payload).json()
     #request = requests.post(url=f'{sd_url}/sdapi/v1/txt2img', json=payload)
     #r = request.json()
-    text1 = "test file"
     file = open("/tmp/test_text1.txt", "w") 
-    file.write(text1)
+    file.write(prompt_in)
     file.close()
     file = open("/tmp/test_text1.txt", "r") 
     update.message.reply_text(f'Done: {file.read()}')
