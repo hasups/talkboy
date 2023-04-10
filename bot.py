@@ -86,9 +86,15 @@ def draw(bot, update, args):
         "steps": 50,
         "save_images": True
     }
+    #r = requests.post(url=f'{sd_url}/sdapi/v1/txt2img', json=payload).json()
     #request = requests.post(url=f'{sd_url}/sdapi/v1/txt2img', json=payload)
     #r = request.json()
-    update.message.reply_text(f'Done: {prompt_in}')
+    text1 = "test file"
+    file = open("/tmp/test_text1.txt", "w") 
+    file.write(text1)
+    file.close()
+    file = open("/tmp/test_text1.txt", "r") 
+    update.message.reply_text(f'Done: {file.read()}')
 '''
     for i in r['images']:
         image = Image.open(io.BytesIO(base64.b64decode(i.split(",",1)[0])))
