@@ -124,8 +124,8 @@ def draw(bot, update, args):
             f"Prompt - **{msg}**\n **[{update.message.from_user.first_name}-Kun](tg://user?id={update.message.from_user.id})**"
         )
         os.remove(f"{word}.png")
-'''        
         K.delete()
+'''
 
 
 def bot_trans(bot, update, args):
