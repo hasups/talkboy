@@ -86,7 +86,7 @@ def draw(bot, update, args):
         "steps": 50,
         "save_images": True
     }
-    request = requests.post(url=f'{sd_url}/sdapi/v1/txt2img', json=payload)
+    #request = requests.post(url=f'{sd_url}/sdapi/v1/txt2img', json=payload)
     #r = request.json()
     update.message.reply_text(f'Done: {prompt_in}')
 '''
