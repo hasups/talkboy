@@ -90,7 +90,8 @@ def draw(bot, update, args):
         "prompt": msg,
         "steps": 20,
         "batch_size": 1,
-        "n_iter": 1
+        "n_iter": 1,
+        "save_images": True
     }
 
     r = requests.post(url=f'{sd_url}/sdapi/v1/txt2img', json=payload).json()
