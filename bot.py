@@ -86,9 +86,11 @@ def draw(bot, update, args):
         "steps": 50,
         "save_images": True
     }
-    #r = requests.post(url=f'{sd_url}/sdapi/v1/txt2img', json=payload).json()
+    r = requests.post(url=f'{sd_url}/sdapi/v1/txt2img', json=payload).json()
     #request = requests.post(url=f'{sd_url}/sdapi/v1/txt2img', json=payload)
     #r = request.json()
+
+    '''
     file = open("/tmp/test_text1.txt", "w") 
     file.write(prompt_in)
     file.close()
@@ -97,15 +99,15 @@ def draw(bot, update, args):
     bot.send_document(chat_id=update.message.chat_id, document=open("/tmp/test_text1.txt", "rb"))
     file.close()
     os.remove("/tmp/test_text1.txt")
-'''
+    '''
+
     for i in r['images']:
         image = Image.open(io.BytesIO(base64.b64decode(i.split(",",1)[0])))
 
-    tmp = f"/tmp/.{update.message.from_user.id}.png"
+    tmp = "/tmp/.result.png"
     image.save(tmp)
-    bot.send_photo(chat_id=update.message.chat_id, photo=tmp, caption=prompt_in)
+    bot.send_photo(chat_id=update.message.chat_id, photo=open(tmp, "rb"), caption=prompt_in)
     os.remove(tmp)
-'''
 
 
 def bot_trans(bot, update, args):
