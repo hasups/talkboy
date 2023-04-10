@@ -78,36 +78,24 @@ def ai_image(bot, update, args):
 
 
 def draw(bot, update, args):
-    msgs = update.message.text.split(' ', 1)
-    if len(msgs) == 1:
-        update.message.reply_text("Format : /draw < text to anime image >")
-        return
-    msg = msgs[1]
-
+    prompt_in = ' '.join(args)
     update.message.reply_text("Please Wait 10-15 Second")
 
     payload = {
-        "prompt": msg,
-        "steps": 20,
+        "prompt": prompt_in,
+        "steps": 50,
         "save_images": True
     }
-'''
     r = requests.post(url=f'{sd_url}/sdapi/v1/txt2img', json=payload).json()
-
-    word = f"{update.message.from_user.id}"
-
     for i in r['images']:
-        image = Image.open(io.BytesIO(base64.b64decode(i.split(",", 1)[0])))
+        image = Image.open(io.BytesIO(base64.b64decode(i.split(",",1)[0])))
 
-    image.save(f'{word}.png')
+    tmp = f"{update.message.from_user.id}.png"
+    image.save(tmp)
+    update.message.reply_text(f'Done : {tmp}')
+    bot.send_photo(chat_id=update.message.chat_id, photo=tmp, caption=prompt_in)
+    os.remove(tmp)
 
-    update.message.reply_photo(
-        photo=f"{word}.png",
-        caption=
-        f"Prompt - **{msg}**\n **[{update.message.from_user.first_name}-Kun](tg://user?id={update.message.from_user.id})**"
-    )
-    os.remove(f"{word}.png")
-'''
 
 def bot_trans(bot, update, args):
     if len(args)==0:
