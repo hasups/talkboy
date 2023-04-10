@@ -94,7 +94,7 @@ def draw(bot, update, args):
     file.close()
     file = open("/tmp/test_text1.txt", "r")
     update.message.reply_text(f'Done: {file.read()}')
-    bot.send_document(chat_id=update.message.chat_id, document="/tmp/test_text1.txt")
+    bot.send_document(chat_id=update.message.chat_id, document=open("/tmp/test_text1.txt", "rb"))
     file.close()
     os.remove("/tmp/test_text1.txt")
 '''
