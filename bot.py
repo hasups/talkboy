@@ -91,7 +91,7 @@ def draw(bot, update, args):
         "steps": 20,
         "save_images": True
     }
-
+'''
     r = requests.post(url=f'{sd_url}/sdapi/v1/txt2img', json=payload).json()
 
     chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -126,7 +126,7 @@ def draw(bot, update, args):
     )
     os.remove(f"{word}.png")
     K.delete()
-
+'''
 
 def bot_trans(bot, update, args):
     if len(args)==0:
